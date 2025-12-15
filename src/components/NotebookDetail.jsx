@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './NotebookDetail.css';
+import AddSourceModal from './AddSourceModal';
 
 function NotebookDetail({ notebook, onBack }) {
     const [selectedSources, setSelectedSources] = useState([]);
     const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
     const [rightPanelOpen, setRightPanelOpen] = useState(true);
+    const [isAddSourceModalOpen, setIsAddSourceModalOpen] = useState(false);
 
     const mockSources = [
         { id: 1, name: 'cls_biz_meta.md', type: 'markdown', icon: '📄', checked: true },
@@ -87,7 +89,7 @@ function NotebookDetail({ notebook, onBack }) {
                             </button>
                         </div>
 
-                        <button className="add-source-btn">
+                        <button className="add-source-btn" onClick={() => setIsAddSourceModalOpen(true)}>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
                                 <path d="M9 1v16M1 9h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
@@ -265,6 +267,12 @@ function NotebookDetail({ notebook, onBack }) {
                     </aside>
                 )}
             </div>
+
+            {/* Add Source Modal */}
+            <AddSourceModal
+                isOpen={isAddSourceModalOpen}
+                onClose={() => setIsAddSourceModalOpen(false)}
+            />
         </div>
     );
 }
