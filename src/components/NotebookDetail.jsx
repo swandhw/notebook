@@ -135,16 +135,18 @@ function NotebookDetail({ notebook, onBack }) {
                         </div>
                     </aside>
                 ) : (
-                    <button
-                        className="expand-sidebar-btn"
-                        onClick={() => setLeftSidebarOpen(true)}
-                        title="출처 열기"
-                    >
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M5 10l5-5 5 5H5z" />
-                            <path d="M5 15h10v-2H5z" />
-                        </svg>
-                    </button>
+                    <aside className="sources-sidebar-collapsed">
+                        <button
+                            className="expand-btn"
+                            onClick={() => setLeftSidebarOpen(true)}
+                            title="출처 열기"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M3 4h14v2H3V4zm0 5h14v2H3V9zm0 5h14v2H3v-2z" />
+                            </svg>
+                            <span>출처</span>
+                        </button>
+                    </aside>
                 )}
 
                 {/* Center Content */}
@@ -157,7 +159,7 @@ function NotebookDetail({ notebook, onBack }) {
                     <div className="chat-summary">
                         <p className="summary-text">
                             비즈니스 메타데이터와 인적 자원 데이터에 대한 정보를 제공합니다.
-                            이 노트북은 10개의 소스 파일에서 추출한 데이터를 기반으로 합니다.
+                            이 노트북은 {mockSources.length}개의 소스 파일에서 추출한 데이터를 기반으로 합니다.
                             데이터 모델의 구조와 관계를 분석하고 이해할 수 있습니다.
                         </p>
 
@@ -248,6 +250,19 @@ function NotebookDetail({ notebook, onBack }) {
                                 <path d="M9 1v16M1 9h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                             메모 추가
+                        </button>
+                    </aside>
+                ) : (
+                    <aside className="studio-panel-collapsed">
+                        <button
+                            className="expand-btn"
+                            onClick={() => setRightPanelOpen(true)}
+                            title="스튜디오 열기"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M4 4h2v2H4V4zm0 4h2v2H4V8zm0 4h2v2H4v-2zm4-8h2v2H8V4zm0 4h2v2H8V8zm0 4h2v2H8v-2zm4-8h2v2h-2V4zm0 4h2v2h-2V8zm0 4h2v2h-2v-2z" />
+                            </svg>
+                            <span>스튜디오</span>
                         </button>
                     </aside>
                 )}
