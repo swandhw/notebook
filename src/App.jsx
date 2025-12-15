@@ -1,5 +1,6 @@
 ﻿import { useState, useRef, useEffect } from 'react'
 import './App.css'
+import NotebookDetail from './components/NotebookDetail'
 
 // Mock data
 const mockNotebooks = [
@@ -55,6 +56,7 @@ function App() {
   const [viewMode, setViewMode] = useState('grid'); // grid or list
   const [sortBy, setSortBy] = useState('최신순');
   const [openMenuId, setOpenMenuId] = useState(null);
+  const [selectedNotebook, setSelectedNotebook] = useState(null);
   const menuRef = useRef(null);
 
   // Close menu when clicking outside
@@ -91,6 +93,16 @@ function App() {
     setOpenMenuId(null);
     // TODO: Implement rename functionality
   };
+
+  // If a notebook is selected, show detail view
+  if (selectedNotebook) {
+    return (
+      <NotebookDetail
+        notebook={selectedNotebook}
+        onBack={() => setSelectedNotebook(null)}
+      />
+    );
+  }
 
   return (
     <div className="app">
@@ -231,7 +243,11 @@ function App() {
 
           {/* Notebook Cards */}
           {mockNotebooks.map((notebook) => (
-            <div key={notebook.id} className={`notebook-card ${notebook.color}`}>
+            <div
+              key={notebook.id}
+              className={`notebook-card ${notebook.color}`}
+              onClick={() => setSelectedNotebook(notebook)}
+            >
               <div className="card-header">
                 <div className="notebook-icon">{notebook.icon}</div>
                 {/* More button in header for grid view */}
