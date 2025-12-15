@@ -243,14 +243,12 @@
 }
 
 .notebooks-container.list .card-header {
-  margin-bottom: 0;
-  flex: 0 0 auto;
-  align-items: center;
+  display: none;
 }
 
-.notebooks-container.list .notebook-icon {
-  font-size: 24px;
-  margin-right: var(--spacing-md);
+/* Explicitly hide card-header's button in list view (backup rule) */
+.notebooks-container.list .card-header .more-btn-container {
+  display: none !important;
 }
 
 .notebooks-container.list .card-body {
@@ -259,6 +257,11 @@
   align-items: center;
   justify-content: flex-start;
   gap: var(--spacing-xl);
+}
+
+.notebooks-container.list .notebook-icon {
+  font-size: 24px;
+  flex: 0 0 auto;
 }
 
 .notebooks-container.list .notebook-title {
@@ -290,16 +293,16 @@
 }
 
 .notebooks-container.list .more-btn-container {
+  flex: 0 0 auto;
   margin-left: auto;
 }
 
 .notebooks-container.list .more-btn {
-  opacity: 0;
+  opacity: 1;
+  /* Always visible in list view */
 }
 
-.notebooks-container.list .notebook-card:hover .more-btn {
-  opacity: 1;
-}
+/* No hover effect needed in list view since it's always visible */
 
 /* Hide create card in list view */
 .notebooks-container.list .create-card {
@@ -329,11 +332,6 @@
 .header-title {
   flex: 1;
   min-width: 200px;
-}
-
-.header-source {
-  flex: 0 0 auto;
-  min-width: 100px;
 }
 
 .header-date {
@@ -503,14 +501,15 @@
   top: 100%;
   right: 0;
   margin-top: var(--spacing-xs);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-medium);
-  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
   overflow: hidden;
   z-index: 1000;
-  animation: popupFadeIn 150ms ease-out;
+  /* High z-index to appear above all content */
+  animation: popupFadeIn 0.15s ease-out;
 }
 
 @keyframes popupFadeIn {

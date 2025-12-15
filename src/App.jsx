@@ -234,46 +234,88 @@ function App() {
             <div key={notebook.id} className={`notebook-card ${notebook.color}`}>
               <div className="card-header">
                 <div className="notebook-icon">{notebook.icon}</div>
-                <div className="more-btn-container" ref={openMenuId === notebook.id ? menuRef : null}>
-                  <button
-                    className="more-btn"
-                    onClick={(e) => handleMenuToggle(e, notebook.id)}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                      <circle cx="10" cy="4" r="1.5" />
-                      <circle cx="10" cy="10" r="1.5" />
-                      <circle cx="10" cy="16" r="1.5" />
-                    </svg>
-                  </button>
-                  {openMenuId === notebook.id && (
-                    <div className="popup-menu">
-                      <button
-                        className="menu-item"
-                        onClick={(e) => handleRename(e, notebook.id)}
-                      >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                          <path d="M2 12.88V16h3.12L14.06 7.06l-3.12-3.12L2 12.88zM16.71 4.71l-2.42-2.42a1 1 0 0 0-1.42 0l-1.83 1.83 3.12 3.12 1.83-1.83a1 1 0 0 0 0-1.42l.72-.72z" />
-                        </svg>
-                        제목 수정
-                      </button>
-                      <button
-                        className="menu-item delete"
-                        onClick={(e) => handleDelete(e, notebook.id)}
-                      >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                          <path d="M6 16c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V6H6v10zm1-9h4v9H7V7zm6.5-5H11L10.5 1h-3l-.5 1H4.5v2h9V2z" />
-                        </svg>
-                        삭제
-                      </button>
-                    </div>
-                  )}
-                </div>
+                {/* More button in header for grid view */}
+                {viewMode === 'grid' && (
+                  <div className="more-btn-container" ref={openMenuId === notebook.id ? menuRef : null}>
+                    <button
+                      className="more-btn"
+                      onClick={(e) => handleMenuToggle(e, notebook.id)}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <circle cx="10" cy="4" r="1.5" />
+                        <circle cx="10" cy="10" r="1.5" />
+                        <circle cx="10" cy="16" r="1.5" />
+                      </svg>
+                    </button>
+                    {openMenuId === notebook.id && (
+                      <div className="popup-menu">
+                        <button
+                          className="menu-item"
+                          onClick={(e) => handleRename(e, notebook.id)}
+                        >
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                            <path d="M2 12.88V16h3.12L14.06 7.06l-3.12-3.12L2 12.88zM16.71 4.71l-2.42-2.42a1 1 0 0 0-1.42 0l-1.83 1.83 3.12 3.12 1.83-1.83a1 1 0 0 0 0-1.42l.72-.72z" />
+                          </svg>
+                          제목 수정
+                        </button>
+                        <button
+                          className="menu-item delete"
+                          onClick={(e) => handleDelete(e, notebook.id)}
+                        >
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                            <path d="M6 16c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V6H6v10zm1-9h4v9H7V7zm6.5-5H11L10.5 1h-3l-.5 1H4.5v2h9V2z" />
+                          </svg>
+                          삭제
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="card-body">
+                {/* Icon at start for list view */}
+                {viewMode === 'list' && <div className="notebook-icon">{notebook.icon}</div>}
                 <h3 className="notebook-title">{notebook.title}</h3>
                 <p className="notebook-source">{notebook.source}</p>
                 <p className="notebook-date">{notebook.date}</p>
                 <p className="notebook-role">{notebook.role}</p>
+                {/* More button at end for list view */}
+                {viewMode === 'list' && (
+                  <div className="more-btn-container" ref={openMenuId === notebook.id ? menuRef : null}>
+                    <button
+                      className="more-btn"
+                      onClick={(e) => handleMenuToggle(e, notebook.id)}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <circle cx="10" cy="4" r="1.5" />
+                        <circle cx="10" cy="10" r="1.5" />
+                        <circle cx="10" cy="16" r="1.5" />
+                      </svg>
+                    </button>
+                    {openMenuId === notebook.id && (
+                      <div className="popup-menu">
+                        <button
+                          className="menu-item"
+                          onClick={(e) => handleRename(e, notebook.id)}
+                        >
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                            <path d="M2 12.88V16h3.12L14.06 7.06l-3.12-3.12L2 12.88zM16.71 4.71l-2.42-2.42a1 1 0 0 0-1.42 0l-1.83 1.83 3.12 3.12 1.83-1.83a1 1 0 0 0 0-1.42l.72-.72z" />
+                          </svg>
+                          제목 수정
+                        </button>
+                        <button
+                          className="menu-item delete"
+                          onClick={(e) => handleDelete(e, notebook.id)}
+                        >
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                            <path d="M6 16c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V6H6v10zm1-9h4v9H7V7zm6.5-5H11L10.5 1h-3l-.5 1H4.5v2h9V2z" />
+                          </svg>
+                          삭제
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}
