@@ -230,6 +230,8 @@
   flex-direction: row;
   align-items: center;
   background-color: var(--color-bg-secondary);
+  overflow: visible;
+  /* Allow popup menu to show outside card */
 }
 
 .notebooks-container.list .notebook-card:first-child {
