@@ -82,8 +82,7 @@ function NotebookDetail({ notebook, onBack }) {
                                 title="출처 닫기"
                             >
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M15 10l-5 5-5-5h10z" />
-                                    <path d="M5 5h10v2H5z" />
+                                    <path d="M13 16l-6-6 6-6v12z" />
                                 </svg>
                             </button>
                         </div>
@@ -142,7 +141,7 @@ function NotebookDetail({ notebook, onBack }) {
                             title="출처 열기"
                         >
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M3 4h14v2H3V4zm0 5h14v2H3V9zm0 5h14v2H3v-2z" />
+                                <path d="M7 4l6 6-6 6V4z" />
                             </svg>
                             <span>출처</span>
                         </button>
@@ -226,8 +225,7 @@ function NotebookDetail({ notebook, onBack }) {
                                 title="스튜디오 닫기"
                             >
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M15 10l-5 5-5-5h10z" />
-                                    <path d="M5 5h10v2H5z" />
+                                    <path d="M7 4l6 6-6 6V4z" />
                                 </svg>
                             </button>
                         </div>
@@ -260,7 +258,7 @@ function NotebookDetail({ notebook, onBack }) {
                             title="스튜디오 열기"
                         >
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M4 4h2v2H4V4zm0 4h2v2H4V8zm0 4h2v2H4v-2zm4-8h2v2H8V4zm0 4h2v2H8V8zm0 4h2v2H8v-2zm4-8h2v2h-2V4zm0 4h2v2h-2V8zm0 4h2v2h-2v-2z" />
+                                <path d="M13 16l-6-6 6-6v12z" />
                             </svg>
                             <span>스튜디오</span>
                         </button>
