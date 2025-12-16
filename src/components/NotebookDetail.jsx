@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import './NotebookDetail.css';
 import AddSourceModal from './AddSourceModal';
+import ReportGenerationModal from './ReportGenerationModal';
+import SlideCreationModal from './SlideCreationModal';
 
 function NotebookDetail({ notebook, onBack }) {
     const [selectedSources, setSelectedSources] = useState([]);
     const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
     const [rightPanelOpen, setRightPanelOpen] = useState(true);
     const [isAddSourceModalOpen, setIsAddSourceModalOpen] = useState(false);
+    const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+    const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
 
     const mockSources = [
         { id: 1, name: 'cls_biz_meta.md', type: 'markdown', icon: '📄', checked: true },
@@ -21,12 +25,8 @@ function NotebookDetail({ notebook, onBack }) {
     ];
 
     const studioActions = [
-        { id: 1, title: 'AI 오디오 요약', icon: '🎙️', color: '#8E24AA' },
-        { id: 2, title: '동영상 개요', icon: '🎬', color: '#00897B' },
-        { id: 3, title: '마인드맵', icon: '🧠', color: '#F57C00' },
-        { id: 4, title: '리포트', icon: '📊', color: '#1976D2' },
-        { id: 5, title: '플래시 카드', icon: '📇', color: '#E91E63' },
-        { id: 6, title: '타임라인', icon: '⏱️', color: '#00ACC1' },
+        { id: 1, title: '리포트', icon: '📊', color: '#1976D2', description: '주요 내용을 요약한 보고서를 생성합니다' },
+        { id: 2, title: '슬라이드', icon: '📑', color: '#E91E63', description: '프레젠테이션용 슬라이드를 만듭니다' },
     ];
 
     const handleSourceToggle = (id) => {
@@ -234,14 +234,35 @@ function NotebookDetail({ notebook, onBack }) {
 
                         <div className="studio-grid">
                             {studioActions.map(action => (
-                                <button
-                                    key={action.id}
-                                    className="studio-card"
-                                    style={{ '--card-color': action.color }}
-                                >
-                                    <span className="card-icon">{action.icon}</span>
-                                    <span className="card-title">{action.title}</span>
-                                </button>
+                                <div key={action.id} className="studio-card-wrapper">
+                                    <button
+                                        className="studio-card"
+                                        style={{ '--card-color': action.color }}
+                                        onClick={() => {
+                                            if (action.id === 1) { // 리포트
+                                                setIsReportModalOpen(true);
+                                            }
+                                        }}
+                                    >
+                                        <span className="card-icon">{action.icon}</span>
+                                        <div className="card-content">
+                                            <h3 className="card-title">{action.title}</h3>
+                                            <p className="card-description">{action.description}</p>
+                                        </div>
+                                    </button>
+                                    {action.id === 2 && ( // 슬라이드
+                                        <button
+                                            className="card-edit-btn"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setIsSlideModalOpen(true);
+                                            }}
+                                            aria-label="슬라이드 수정"
+                                        >
+                                            ✏️
+                                        </button>
+                                    )}
+                                </div>
                             ))}
                         </div>
 
@@ -272,6 +293,18 @@ function NotebookDetail({ notebook, onBack }) {
             <AddSourceModal
                 isOpen={isAddSourceModalOpen}
                 onClose={() => setIsAddSourceModalOpen(false)}
+            />
+
+            {/* Report Generation Modal */}
+            <ReportGenerationModal
+                isOpen={isReportModalOpen}
+                onClose={() => setIsReportModalOpen(false)}
+            />
+
+            {/* Slide Creation Modal */}
+            <SlideCreationModal
+                isOpen={isSlideModalOpen}
+                onClose={() => setIsSlideModalOpen(false)}
             />
         </div>
     );
